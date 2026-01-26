@@ -1,6 +1,6 @@
 #include "saiki.h"
 
-Board::Board() 
+Board::Board()
 {
 	for (int y = 0; y < 12; y++)
 	{
@@ -14,9 +14,8 @@ Board::Board()
 			cell[x][y].y = y * 32;
 		}
 	}
-
-
 }
+
 void Board::Click()
 {
 	GetMousePoint(&mouseX, &mouseY);
@@ -25,29 +24,32 @@ void Board::Click()
 	{
 		for (int x = 0; x < 15; x++)
 		{
-			if (mouseX > x * 32 && mouseX <  x * 32 + 32 && mouseY >y * 32 && mouseY < y * 32 + 32)
+			if (mouseX > x * 32 &&  mouseX < x * 32 + 32 &&
+				mouseY > y * 32 &&  mouseY < y * 32 + 32)
 			{
 				if (GetMouseInput() & MOUSE_INPUT_LEFT)
 				{
 					cell[x][y].turf = cell[x][y].empty;
+					DrawFormatString(600, 500, GetColor(255, 255, 255), "%d", cell[x][y].empty);
+					DrawFormatString(600, 532, GetColor(255, 255, 255), "%d", cell[x][y].turf);
 					FindAround(x, y);
 				}
-
 			}
 		}
 	}
 }
+
 void Board::FindAround(int i,int t)
 {
 	for (int y = -1; y <= 1; y++)
 	{
 		for (int x = -1; x <= 1; x++)
 		{
-			if (i < 0 || i > 12)
+			if (i < 0 || i > 15)
 			{
 				continue;
 			}
-			if (t < 0 || t > 15)
+			if (t < 0 || t > 12)
 			{
 				continue;
 			}
@@ -56,9 +58,11 @@ void Board::FindAround(int i,int t)
 			{
 				continue;
 			}
+
 			cell[i + x][t + y].IsClick = true;
 
 			cell[i + x][t + y].turf = cell[i + x][t + y].empty;
+
 			if (cell[i + x][t + y].empty == ID::empty && cell[i + x][t + y].IsClick == false)
 			{
 				FindAround(i + x, t + y);
@@ -66,6 +70,7 @@ void Board::FindAround(int i,int t)
 		}
 	}
 }
+
 void Board::Draw()
 {
 	int a;
@@ -101,6 +106,7 @@ void Board::Draw()
 			}
 			DrawGraph(cell[x][y].x, cell[x][y].y, a, true);
 		
+			DrawFormatString(cell[x][y].x, cell[x][y].y, GetColor(255, 255, 255), "%d", a);
 		}
 	}
 }

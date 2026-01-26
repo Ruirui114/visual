@@ -25,6 +25,7 @@ struct Cell
 	bool IsClick = false;
 	bool IsFlag = false;
 };
+
 class Board
 {
 public:
