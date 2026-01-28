@@ -1,0 +1,41 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>20251015_tmp</Name>
+    <Description>GA2Bテンプレート</Description>
+    <ProjectType>VC</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>20251015_tmp</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="dxlib_tmp_2025_vol6.021_GA2.vcxproj" File="dxlib_tmp_2025_vol6.021_GA2.vcxproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.filters">dxlib_tmp_2025_vol6.021_GA2.vcxproj.filters</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="main.cpp">main.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="game.cpp">game.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="player.cpp">player.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="main.h">main.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="objID.h">objID.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="player.h">player.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="game.h">game.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="3D_function.h">3D_function.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="CCamera.h">CCamera.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="2D_function.h">2D_function.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="function.h">function.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="library_function.h">library_function.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="objBase.h">objBase.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="objChar.h">objChar.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Scene_Base.h">Scene_Base.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Scene_Manager.h">Scene_Manager.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="3D_function.cpp">3D_function.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="CCamera.cpp">CCamera.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="2D_function.cpp">2D_function.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="library_function.cpp">library_function.cpp</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
