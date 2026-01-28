@@ -6,6 +6,8 @@
 
 #include "player.h"
 #include "donki.h"
+#include "peech.h"
+#include "enemy.h"
 #include "map.h"
 class CMap;
 extern bool onGround;
@@ -15,7 +17,8 @@ extern bool yellow;
 CGame::CGame(CManager* p) :CScene(p){
 	base.emplace_back(std::make_unique<CPlayer>());
 	base.emplace_back(std::make_unique<CDonki>());
-
+	base.emplace_back(std::make_unique<CPeech>());
+	base.emplace_back(std::make_unique<CEnemy>());
 	//マップマネージャー
 	map = new CMap();
 	map->LoadMap();

@@ -8,4 +8,5 @@ enum objID {
 	YELLOW,
 	GOAL,
 	SPACE,
+	ENEMY,
 };

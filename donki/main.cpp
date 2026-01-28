@@ -8,9 +8,10 @@
 #include "player.h"
 #include "map.h"
 #include "block.h"
+#include "donki.h"
 constexpr auto FPS = 60;//基本FPS
 CPlayer player;
-
+CDonki donki;
 //Point3 CCameraInfo::pos;//カメラ情報初期化(グローバル）
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE,

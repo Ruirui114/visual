@@ -17,6 +17,7 @@ public:
 	Point m_pos{ 0,0 };
 	int up_img;
 	int framecount;
+	int framecount2;
 	float x, y;
 	float vy;
 	bool onGround;

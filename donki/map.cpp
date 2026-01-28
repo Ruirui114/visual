@@ -39,10 +39,10 @@ void CMap::LoadMap() {
 
 int CMap::GetChip(int chipX, int chipY)
 {
-	int cx = chipX / CHIP_SIZE;
-	int cy = chipY / CHIP_SIZE;
-	if (chipX < 0 || chipX >= 32 || chipY < 0 || chipY >= 32) return -1;
-	return map[cy][cx];
+    if (chipX < 0 || chipX >= 32 || chipY < 0 || chipY >= 30)
+        return -1;
+
+    return map[chipY][chipX];
 }
 
 void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base) {
@@ -66,9 +66,9 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base) {
 			if (map[y][x] == 2)
 			{
 				DrawBox(
-					p.x,
+					p.x + 14,
 					p.y,
-					p.x + 32,
+					p.x + 18,
 					p.y + 32,
 					GetColor(255, 0, 0),
 					false

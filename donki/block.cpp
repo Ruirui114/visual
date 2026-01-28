@@ -3,9 +3,12 @@
 #include "player.h"
 #include"function.h"
 #include "map.h"
+#include "enemy.h"
+
 extern bool onGround;
 extern bool ladder;
 extern bool yellow;
+extern bool underladder;
 
 CBlock::CBlock(Point p, int _i, int _img ) {
 	img = _img;
@@ -34,15 +37,56 @@ CBlock::CBlock(Point p, int _i, int _img ) {
 
 int CBlock::Action(std::vector<std::unique_ptr<BaseVector>>& base, CMap& map) {
 	CPlayer* p = (CPlayer*)Get_obj(base,PLAYER);
-	int chipX = p->pos.x / 32;
-	int chipY = p->pos.y / 32;
+	CEnemy* e = (CEnemy*)Get_obj(base, ENEMY);
+	
+
+	int pchipX = (p->pos.x + p->ImgWidth / 2) / CHIP_SIZE;
+	int pchipY = (p->pos.y + p->ImgHeight) / CHIP_SIZE;
+
+	//int echipX = (e->pos.x + e->ImgWidth / 2) / CHIP_SIZE;
+	//int echipY = (e->pos.y + e->ImgHeight) / CHIP_SIZE;
+
+	int ladderChip = map.GetChip(pchipX, pchipY + 2);
+	
+	//int chipX = p->pos.x / 32;
+	//int chipY = p->pos.y / 32;
+	// 
 	//°”»’è
 	if (HitCheck_box(this, p) && this->ID == BLOCK) {
 		onGround = true;
-		p->m_pos.y = this->pos.y - ImgWidth;
+		p->pos.y = this->pos.y - ImgWidth;
 		p->vec.y = 0.0f;
-		p->pos.y = p->m_pos.y;
+		ladderChip = map.GetChip(pchipX, pchipY + 2);
 		DrawFormatString(0, 64, GetColor(255, 255, 255), "°‚Å‚·");
+		DrawFormatString(500, 96, GetColor(255, 255, 255), "ladderChip:%d  LADDER:%d", ladderChip, LADDER);
+		if (ladderChip == 2 || ladderChip == LADDER)
+		{
+			underladder = true;
+			DrawFormatString(200, 400, GetColor(255, 255, 255), "‰º‚Í‚µ‚²‚Å‚·");
+		}
+		else
+		{
+			underladder = false;
+		}
+	}	
+
+	//if (HitCheck_box(this, e) && this->ID == BLOCK) {
+	//	onGround = true;
+	//	e->pos.y = this->pos.y - ImgWidth;
+	//	e->vec.y = 0.0f;
+	//	ladderChip = map.GetChip(pchipX, pchipY + 2);
+	//	DrawFormatString(0, 64, GetColor(255, 255, 255), "°‚Å‚·");
+	//	DrawFormatString(500, 96, GetColor(255, 255, 255), "ladderChip:%d  LADDER:%d", ladderChip, LADDER);
+	//}
+
+	if (ladderChip == 2 || ladderChip == LADDER)
+	{
+		underladder = true;
+		DrawFormatString(200, 400, GetColor(255, 255, 255), "‰º‚Í‚µ‚²‚Å‚·");
+	}
+	else
+	{
+		underladder = false;
 	}
 	//‚Í‚µ‚²”»’è
 	if (HitCheck_box(this, p) && this->ID == LADDER)

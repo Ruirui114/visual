@@ -1,9 +1,9 @@
 #pragma once
 #include "objBase.h"
 
-class CDonki :public BaseVector {
+class CPeech :public BaseVector {
 public:
-	CDonki();
+	CPeech();
 
 	int Action(std::vector<std::unique_ptr<BaseVector>>& base, CMap& map);
 	void Draw();

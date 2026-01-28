@@ -8,13 +8,14 @@
 bool ladder = false;
 bool onGround = false;
 bool yellow = false;
+bool underladder = false;
 //extern CMap mapObj;
 CPlayer::CPlayer() {
 	img = LoadGraph("image\\chara.png");
 	
 	//マップ初期位置
-	m_pos.x = 736;//128 ,250 320
-	m_pos.y = 192;//832, 100
+	m_pos.x = 128;//128 ,250 320
+	m_pos.y = 832;//832, 100
 	//描画位置
 	pos = m_pos;
 
@@ -26,6 +27,7 @@ CPlayer::CPlayer() {
 	
 	
 	framecount = 0;
+	framecount2 = 0;
 	pri = 1;
 	ID = PLAYER;
 }
@@ -39,19 +41,20 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base, CMap& map)
 	const float gravity = 2.0f;
 	int move = false;
 	int up_move = false;
-
+	int jump = true;
 	int px = (pos.x + ImgWidth / 2) / CHIP_SIZE;
 	int py = (pos.y + ImgHeight + 1) / CHIP_SIZE;
 	int underChip = map.GetChip(px, py);
-
+	//float ladderCenterX =ChipX * CHIP_SIZE + (CHIP_SIZE - ImgWidth) / 2;
 	ChipX = pos.x / 32;
 	ChipY = pos.y / 32;
-
+	framecount2++;
 	//重力
 	if (onGround == true)
 	{
 		vy = 0.0f;
 		up_move = false;
+		jump = true;
 	}
 	else
 	{
@@ -71,23 +74,29 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base, CMap& map)
 		CutY = 0;
 		move= true;
 	}
-	if (CheckHitKey(KEY_INPUT_SPACE)) {
+	
+	if (CheckHitKey(KEY_INPUT_SPACE) && jump == true) {
 		onGround = false;
 		move = true;
 		up_move = false;
 		vec.y += -5.0f;
+
 	}
 	//はしご
 	if (ladder == true)
 	{
 		DrawFormatString(0, 48, GetColor(255, 255, 255), "登れます");
 		if (CheckHitKey(KEY_INPUT_W)) {
+			//pos.x = ladderCenterX;
+			jump = false;
 			vec.y += -1.5;
 			onGround = true;
 			move = false;
 			up_move = true;
 		}
 		if (CheckHitKey(KEY_INPUT_S)) {
+			//pos.x = ladderCenterX;
+			jump = false;
 			vec.y += 1.5;
 			onGround = true;
 			move = false;
@@ -99,18 +108,13 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base, CMap& map)
 		onGround = false;
 		up_move = false;
 	}
-
-	if (underChip == 2)
+	if (underladder == true)
 	{
-		onGround = true;
-		DrawFormatString(30, 48, GetColor(255, 255, 255), "降りれます");
 		if (CheckHitKey(KEY_INPUT_S)) {
-			DrawFormatString(30, 48, GetColor(255, 255, 255), "降りてます");
+			//pos.x = ladderCenterX;
+			underladder = false;
+			pos.y += 64;
 		}
-	}
-	else
-	{
-		DrawFormatString(30, 48, GetColor(255, 255, 255), "aaaaaaaa");
 	}
 
 	//キャラ画像
@@ -148,6 +152,10 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base, CMap& map)
 	{
 		framecount = 0;
 	}
+	if(framecount2 >= 40)
+	{
+		framecount2 = 0;
+	}
 	pos.x += vec.x;
 	pos.y += vec.y;
 
@@ -177,5 +185,4 @@ void CPlayer::Draw() {
 }
 
 
-///のぼりが出来たら降りるのをやりたいあとほかのキャラクター配置したい
 //プレイヤーの当たり判定だけを小さくしたいもしくは丸の当たり判定にする
