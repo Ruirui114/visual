@@ -152,10 +152,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="saiki.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="saiki.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
