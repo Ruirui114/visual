@@ -152,8 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="ソース.cpp" />
     <ClCompile Include="ソース1.cpp" />
+=======
+>>>>>>> 85662a4613217a70b414d8102a5160931afe5d40
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
