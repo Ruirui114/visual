@@ -66,6 +66,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance,
 		{
 			//--------------------------------------------------------------------
 
+
+
 			ScreenFlip(); //裏画面データを表画面へ反映
 
 			//毎ループ呼び出す。エラーになった場合breakする
